@@ -54,7 +54,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
+        exclude:
           - os: "opensuse/leap:latest"
             pkgs: "clang gcc11-c++"
             env1: "CC=clang CXX=clang++"
@@ -69,9 +69,6 @@ jobs:
             pkgs: clang
             env1: "CC=clang CXX=clang++"
           - os: "ubuntu:24.04"
-            pkgs: "gcc-10 g++-10"
-            env1: "CC=gcc-10 CXX=g++-10"
-          - os: "ubuntu:24.04"
             pkgs: "clang-15 libstdc++-10-dev"
             env1: "CC=clang-15 CXX=clang++-15"
           - os: "alpine"
@@ -81,6 +78,10 @@ jobs:
             pkgs: "gcc gcc-g++"
           - os: "fedora:rawhide"
             pkgs: "gcc gcc-g++"
+        include:
+          - os: "ubuntu:24.04"
+            pkgs: "gcc-10 g++-10"
+            env1: "CC=gcc-10 CXX=g++-10"
 
     container:
       image: ${{ matrix.os }}
@@ -159,13 +160,15 @@ jobs:
 
       - name: pre-upload binaries
         run: |
-          find . -type f
+          find . -type f | tar Jcf files.lst.txz
 
       - name: upload binaries
         uses: actions/upload-artifact@v4
         with:
           name: binaries
-          path: ${{ github.workspace }}/build
+          path: |
+            /usr/local/bin
+            files.lst.txz
 
       - name: check
         run: |
