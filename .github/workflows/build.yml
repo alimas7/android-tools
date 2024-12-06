@@ -157,6 +157,10 @@ jobs:
           cmake --install . --prefix /usr/local
           echo -e "\n### all done ###\n"
 
+      - name: pre-upload binaries
+        run: |
+          find . -type f
+
       - name: upload binaries
         uses: actions/upload-artifact@v4
         with:
