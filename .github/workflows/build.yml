@@ -1,6 +1,6 @@
 name: build
 
-on: [push, pull_request]
+on: workflow_dispatch
 
 jobs:
   upload-src:
@@ -156,6 +156,12 @@ jobs:
           echo -e "\n### make install ###\n"
           cmake --install . --prefix /usr/local
           echo -e "\n### all done ###\n"
+
+      - name: upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: binaries
+          path: ${{ github.workspace }}/build
 
       - name: check
         run: |
