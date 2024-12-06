@@ -54,30 +54,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        exclude:
-          - os: "opensuse/leap:latest"
-            pkgs: "clang gcc11-c++"
-            env1: "CC=clang CXX=clang++"
-          - os: "opensuse/tumbleweed"
-            pkgs: "gcc gcc-c++"
-          - os: "opensuse/tumbleweed"
-            pkgs: clang
-            env1: "CC=clang CXX=clang++"
-          - os: "archlinux:base"
-            pkgs: gcc
-          - os: "archlinux:base"
-            pkgs: clang
-            env1: "CC=clang CXX=clang++"
-          - os: "ubuntu:24.04"
-            pkgs: "clang-15 libstdc++-10-dev"
-            env1: "CC=clang-15 CXX=clang++-15"
-          - os: "alpine"
-            pkgs: "gcc"
-            env1: "CC=gcc CXX=g++"
-          - os: "fedora:latest"
-            pkgs: "gcc gcc-g++"
-          - os: "fedora:rawhide"
-            pkgs: "gcc gcc-g++"
+        # exclude:
+        #   - os: "opensuse/leap:latest"
+        #     pkgs: "clang gcc11-c++"
+        #     env1: "CC=clang CXX=clang++"
+        #   - os: "opensuse/tumbleweed"
+        #     pkgs: "gcc gcc-c++"
+        #   - os: "opensuse/tumbleweed"
+        #     pkgs: clang
+        #     env1: "CC=clang CXX=clang++"
+        #   - os: "archlinux:base"
+        #     pkgs: gcc
+        #   - os: "archlinux:base"
+        #     pkgs: clang
+        #     env1: "CC=clang CXX=clang++"
+        #   - os: "ubuntu:24.04"
+        #     pkgs: "clang-15 libstdc++-10-dev"
+        #     env1: "CC=clang-15 CXX=clang++-15"
+        #   - os: "alpine"
+        #     pkgs: "gcc"
+        #     env1: "CC=gcc CXX=g++"
+        #   - os: "fedora:latest"
+        #     pkgs: "gcc gcc-g++"
+        #   - os: "fedora:rawhide"
+        #     pkgs: "gcc gcc-g++"
         include:
           - os: "ubuntu:24.04"
             pkgs: "gcc-10 g++-10"
